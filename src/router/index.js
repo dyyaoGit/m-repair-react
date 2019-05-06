@@ -4,6 +4,8 @@ import Login from '../views/Login';
 import Layout from '../views/Layout';
 import AllRecord from '../views/AllRecoed'; // 所有维修记录
 import Sended from '../views/Sended'; // 已派单
+import CustomerCenter from '~/views/CustomerCenter'; // 我的
+import TestUploadPage from '~/views/TestUpload'; // 上传测试页面
 
 class Container extends React.Component {
     constructor(props) {
@@ -16,16 +18,22 @@ class Container extends React.Component {
             <Router>
                 <Switch>
                     <Route path="/" component={Login} exact></Route>
-                    <Route path="/Layout" render={(props) => (
+                    <Route path="/layout" render={(props) => (
                         <Layout {...props}>
                             <Switch>
-                                <Route path="/Layout" exact render={() => (
-                                    <AllRecord {...props}  />
-                                )}></Route>
-                                <Route path="/Layout/sended" component={Sended}></Route>
+                                <Route path="/layout" component={AllRecord} exact></Route>
+                                <Route path="/layout/sended"
+                                       component={Sended}
+                                />
+                                <Route path="/layout/customercenter"
+                                   component={CustomerCenter}
+                                />
+                                <Route path="/layout/testuploadpage"
+                                   component={TestUploadPage}
+                                />
                             </Switch>
                         </Layout>
-                    )}></Route>
+                        )} />
                 </Switch>
             </Router>
         )

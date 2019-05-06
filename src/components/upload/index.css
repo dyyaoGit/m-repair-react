@@ -1,0 +1,13 @@
+.upload-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+    border: 1px solid #888;
+}
+
+.upload-wrap .upload-input {
+    display: none;
+}

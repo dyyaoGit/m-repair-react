@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavBar, InputItem, Button, Toast } from 'antd-mobile';
 import './index.css';
+import Cookies from 'js-cookie';
 
 // import './Index.css';
 import {createForm} from 'rc-form'; // 引入表单注入插件
@@ -20,6 +21,9 @@ class Login extends React.Component {
         axios.post('/admin/adminUser/login', this.props.form.getFieldsValue()).then(res => {
             if(res.data.code == 200){
                 this.props.history.push('/Layout');
+                let userObj = res.data.data;
+                let userJsonStr = JSON.stringify(userObj);
+                Cookies.set('user', userJsonStr);
             } else {
                 Toast.info(res.data.msg);
             }
@@ -43,6 +47,7 @@ class Login extends React.Component {
                                clear
                                type="password"
                                placeholder="请输入您的密码"
+                               ref={el=> this.input = el}
                     >密码</InputItem>
 
                 </div>
@@ -54,13 +59,6 @@ class Login extends React.Component {
 
             </div>
         )
-    }
-    componentDidMount () {
-        console.log(this.props.form);
-        // this.props.form.setFieldsInitialValue('username', '18611507465')
-        // setInterval(() => {
-        //     console.log(this.props)
-        // }, 1000)
     }
 }
 
